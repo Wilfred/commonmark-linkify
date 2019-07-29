@@ -1,0 +1,29 @@
+{
+  "name": "commonmark-linkify",
+  "version": "1.0.0",
+  "description": "Convert URLs to clickable links in commonmark",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . -f codeframe --fix",
+    "test": "jest",
+    "test-circleci": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true"
+  },
+  "jest-junit": {
+    "output": "./test-results/junit/results.xml"
+  },
+  "keywords": [
+    "commonmark",
+    "urls"
+  ],
+  "author": "Wilfred Hughes <me@wilfred.me.uk>",
+  "license": "ISC",
+  "dependencies": {
+    "commonmark": "^0.29.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.7.2",
+    "jest": "^24.8.0",
+    "jest-junit": "^6.4.0"
+  }
+}
