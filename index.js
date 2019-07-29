@@ -42,7 +42,7 @@ function splitMatches(text, regexp) {
   return result;
 }
 
-const urlRegexp = new RegExp("https?://[^ ]+");
+const urlRegexp = new RegExp("https?://[^ ]+[^ .,]");
 
 function splitURLs(node) {
   const parts = splitMatches(node.literal, urlRegexp);
