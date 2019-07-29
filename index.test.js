@@ -44,3 +44,9 @@ test("Trailing punctuation", () => {
     '<p>Foo <a href="http://example.com">http://example.com</a>. Bar.</p>'
   );
 });
+
+test("Ignore existing links", () => {
+  expect(transformAndRender("[foo](http://example.com)")).toBe(
+    '<p><a href="http://example.com">foo</a></p>'
+  );
+});
