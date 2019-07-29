@@ -31,6 +31,14 @@ test("HTTPS URL", () => {
   );
 });
 
+test("URL with path and parameters", () => {
+  expect(
+    transformAndRender("http://example.com/foo?bar=baz&amp;biz=42#more-stuff")
+  ).toBe(
+    '<p><a href="http://example.com/foo?bar=baz&amp;biz=42#more-stuff">http://example.com/foo?bar=baz&amp;biz=42#more-stuff</a></p>'
+  );
+});
+
 test("Trailing punctuation", () => {
   expect(transformAndRender("Foo http://example.com. Bar.")).toBe(
     '<p>Foo <a href="http://example.com">http://example.com</a>. Bar.</p>'

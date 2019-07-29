@@ -44,8 +44,9 @@ function splitMatches(text, regexp) {
 
 const urlRegexp = new RegExp("https?://[^ ]+[^ .,]");
 
-function splitURLs(node) {
-  const parts = splitMatches(node.literal, urlRegexp);
+function splitURLs(textNodes) {
+  const text = textNodes.map(n => n.literal).join("");
+  const parts = splitMatches(text, urlRegexp);
 
   return parts.map(part => {
     if (part[1]) {
@@ -58,16 +59,34 @@ function splitURLs(node) {
 
 function transform(parsed) {
   const walker = parsed.walker();
-  let event, node;
+  let event;
 
+  let nodes = [];
   while ((event = walker.next())) {
-    node = event.node;
-    if (event.entering && node.type === "text") {
-      splitURLs(node).forEach(newNode => {
-        node.insertBefore(newNode);
-      });
-      node.unlink();
+    const node = event.node;
+    if (event.entering) {
+      if (node.type === "text") {
+        nodes.push(node);
+      } else if (nodes.length > 0) {
+        splitURLs(nodes)
+          .reverse()
+          .forEach(newNode => {
+            nodes[0].insertAfter(newNode);
+          });
+
+        nodes.forEach(n => n.unlink());
+        nodes = [];
+      }
     }
+  }
+
+  if (nodes.length > 0) {
+    splitURLs(nodes)
+      .reverse()
+      .forEach(newNode => {
+        nodes[0].insertAfter(newNode);
+      });
+    nodes.forEach(n => n.unlink());
   }
 
   return parsed;
