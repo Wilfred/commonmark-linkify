@@ -12,6 +12,7 @@ module.exports = {
     "no-console": "warn",
     "no-debugger": "warn",
     "no-var": "error",
+    "no-unused-vars": "warn",
     "prefer-const": "error",
     semi: ["error", "always"]
   }
