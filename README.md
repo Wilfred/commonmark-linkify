@@ -1,4 +1,4 @@
-# Linkify for commonmark.js
+# Linkify for commonmark.js [![CircleCI](https://circleci.com/gh/Wilfred/commonmark-linkify.svg?style=svg)](https://circleci.com/gh/Wilfred/commonmark-linkify)
 
 This package offers an AST transformer for converting bare URLs to
 links in commonmark.
