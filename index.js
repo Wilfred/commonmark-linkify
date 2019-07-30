@@ -64,10 +64,10 @@ function transform(parsed) {
   let nodes = [];
   while ((event = walker.next())) {
     const node = event.node;
-    if (event.entering) {
-      if (node.type === "text") {
-        nodes.push(node);
-      } else if (nodes.length > 0) {
+    if (event.entering && node.type === "text") {
+      nodes.push(node);
+    } else {
+      if (nodes.length > 0) {
         splitURLs(nodes)
           .reverse()
           .forEach(newNode => {

@@ -50,3 +50,9 @@ test("Ignore existing links", () => {
     '<p><a href="http://example.com">foo</a></p>'
   );
 });
+
+test("Ignore existing link trailing text", () => {
+  expect(transformAndRender("[foo](http://foo.com) and")).toBe(
+    '<p><a href="http://foo.com">foo</a> and</p>'
+  );
+});
