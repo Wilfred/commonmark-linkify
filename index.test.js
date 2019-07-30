@@ -56,3 +56,11 @@ test("Ignore existing link trailing text", () => {
     '<p><a href="http://foo.com">foo</a> and</p>'
   );
 });
+
+test("Linkify in other syntax", () => {
+  expect(transformAndRender("* http://foo.com")).toBe(
+    `<ul>
+<li><a href="http://foo.com">http://foo.com</a></li>
+</ul>`
+  );
+});
